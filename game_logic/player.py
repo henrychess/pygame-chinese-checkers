@@ -175,21 +175,24 @@ class HumanPlayer(Player):
         clicking = False
         selected_piece_coor = ()
         prev_selected_piece_coor = ()
+        #pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
         while True:
-            #pygame.event.wait()
+            """ ev = pygame.event.wait()
+            if ev == QUIT: sys.exit() """
             #pygame.time.Clock().tick(30)
-            for event in pygame.event.get():
-                if event.type == QUIT:
+            for ev in pygame.event.get():
+                if ev == pygame.QUIT:
                     pygame.quit()
-                    sys.exit()
-                elif event.type == MOUSEBUTTONDOWN:
+                    sys.exit() 
+                elif ev == MOUSEBUTTONDOWN:
                     clicking = True
-                elif event.type == MOUSEBUTTONUP:
+                elif ev == MOUSEBUTTONUP:
                     clicking = False
             #wait for a click,
             #if mouse hovers on a piece, highlight it
             mouse_pos = pygame.mouse.get_pos()
-            #clicking = pygame.mouse.get_pressed()[0]
+            clicking = pygame.mouse.get_pressed()[0]
+            #
             if g.screen_is_altered:
                 g.drawBoard(window, self.playerNum)
                 g.screen_is_altered = False
