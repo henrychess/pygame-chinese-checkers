@@ -10,14 +10,14 @@ pygame.display.set_caption('Chinese Checkers')
 
 #set up the game
 g = Game(2)
-players = [Greedy2BotPlayer(1), Greedy2BotPlayer(2)]
+players = [HumanPlayer(1), Greedy2BotPlayer(2)]
 
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-    mainMenuLoop(window)
-    #winnerList, replayRecord = gameplayLoop(g, players, window)
+    #mainMenuLoop(window)
+    winnerList, replayRecord = gameplayLoop(g, players, window)
     #a = gameOverLoop(window, winnerList, replayRecord)
     #if a == 1: mainMenuLoop(window)
