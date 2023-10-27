@@ -13,7 +13,7 @@ class Game:
         self.unitLength = 40 #unitLength length in pixels
         self.lineWidth = 2 #line width
         self.circleRadius = 15 #board square (circle) radius
-        self.centerCoor = (400, 300) #window size is 800*600
+        self.centerCoor = (WIDTH/2, HEIGHT/2) #window size is 800*600
         #
         self.screen_is_altered = False
 
@@ -90,11 +90,18 @@ class Game:
             if isinstance(self.board[i], Piece) and self.board[i].getPlayerNum() != playerNum: return False
         return True
 
-    def boardState(self, playerNum: int):
+    def getBoardState(self, playerNum: int):
         '''Key: subjective coordinates\nValue: piece's player number, or 0 if it's vacant'''
         state = dict()
         for i in self.board:
             state[obj_to_subj_coor(i, playerNum)] = (0 if self.board[i] == None else int(self.board[i].getPlayerNum()))
+        return state
+    
+    def getBoolBoardState(self, playerNum: int):
+        '''Key: subjective coordinates\nValue: `true`, or `false` if it's vacant'''
+        state = dict()
+        for i in self.board:
+            state[obj_to_subj_coor(i, playerNum)] = (self.board[i] != None)
         return state
 
     def allMovesDict(self, playerNum: int):
@@ -109,7 +116,7 @@ class Game:
         return moves
 
     def movePiece(self, start: tuple, end: tuple):
-        assert self.board[start] != None and self.board[end] == None
+        assert self.board[start] != None and self.board[end] == None, "AssertionError at movePiece()"
         self.board[start].setCoor(end)
         self.board[end] = self.board[start]
         self.board[start] = None
