@@ -7,22 +7,23 @@ import pygame
 import math
 from pygame.locals import *
 import sys
-import time
 
 class Player:
-    def __init__(self, playerNum: int):
-        self.playerNum = playerNum
+    def __init__(self):
+        self.playerNum = 0
         self.has_won = False
     def getPlayerNum(self):
         return self.playerNum
+    def setPlayerNum(self, num: int):
+        self.playerNum = num
     
     def pickMove(self, g:Game):
         #dummy function that should be overridden
         pass
 
 class RandomBotPlayer(Player):
-    def __init__(self, playerNum: int):
-        super().__init__(playerNum)
+    def __init__(self):
+        super().__init__()
     
     def pickMove(self, g: Game):
         '''returns [start_coor, end_coor]'''
@@ -35,8 +36,8 @@ class RandomBotPlayer(Player):
         return [subj_to_obj_coor(coor, self.playerNum), subj_to_obj_coor(move, self.playerNum)]
 
 class GreedyRandomBotPlayer(Player):
-    def __init__(self, playerNum: int):
-        super().__init__(playerNum)
+    def __init__(self):
+        super().__init__()
     
     def pickMove(self, g: Game):
         '''returns [start_coor, end_coor]'''
@@ -69,8 +70,8 @@ class GreedyRandomBotPlayer(Player):
 
 class Greedy1BotPlayer(Player):
     '''Always finds the move that moves a piece to the topmost square'''
-    def __init__(self, playerNum: int):
-        super().__init__(playerNum)
+    def __init__(self):
+        super().__init__()
 
     def pickMove(self, g: Game):
         '''returns [start_coor, end_coor] in objective coordinates'''
@@ -121,8 +122,8 @@ class Greedy1BotPlayer(Player):
 
 class Greedy2BotPlayer(Player):
     '''Always finds a move that jumps through the maximum distance (dest[1] - coor[1])'''
-    def __init__(self, playerNum: int):
-        super().__init__(playerNum)
+    def __init__(self):
+        super().__init__()
 
     def pickMove(self, g: Game):
         '''returns [start_coor, end_coor] in objective coordinates\n
@@ -166,8 +167,8 @@ class Greedy2BotPlayer(Player):
         return [subj_to_obj_coor(start_coor, self.playerNum), subj_to_obj_coor(end_coor, self.playerNum)]
 
 class HumanPlayer(Player):
-    def __init__(self, playerNum: int):
-        super().__init__(playerNum)
+    def __init__(self):
+        super().__init__()
     
     def pickMove(self, g:Game, window:pygame.Surface, humanPlayerNum: int=0):
         pieceSet:set[Piece] = g.pieces[self.playerNum]
