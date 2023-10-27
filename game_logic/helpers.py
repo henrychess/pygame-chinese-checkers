@@ -1,7 +1,6 @@
 from .literals import *
 import math
 import pygame
-import copy
 from colorsys import rgb_to_hls, hls_to_rgb
 from tkinter import *
 from tkinter import filedialog
@@ -115,8 +114,8 @@ class Button:
             pygame.draw.rect(window, GRAY, self.buttonRect, 0, 5)
         
     def isClicked(self, mouse_pos, mouse_left_click):
-        #mouse_pos = pygame.mouse.get_pos()
-        #mouse_left_click = pygame.mouse.get_pressed[0]
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_left_click = pygame.mouse.get_pressed()[0]
         if mouse_left_click and self.buttonRect.collidepoint(mouse_pos) and self.enabled:
             return True
         else: return False
@@ -148,3 +147,4 @@ class TextButton(Button):
             pygame.draw.rect(window, brighten_color(color, 0.25), self.buttonRect, 0, 5)
         pygame.draw.rect(window, BLACK, self.buttonRect, 2, 5)
         window.blit(text, textRect)
+
