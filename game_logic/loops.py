@@ -15,6 +15,7 @@ class LoopController:
         pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
 
     def mainLoop(self, window: pygame.Surface):
+        print(f"Loop goes on with loopNum {self.loopNum}")
         if self.loopNum == 0:
             self.mainMenuLoop(window)
         elif self.loopNum == 1:
@@ -161,7 +162,7 @@ class LoopController:
             app = QtWidgets.QApplication(sys.argv)
         else:
             app = QtWidgets.QApplication.instance()
-        app.aboutToQuit.connect(self.backToMenu)
+        app.aboutToQuit.connect(self.closing)
         Form = QtWidgets.QWidget()
         Form.setWindowTitle("Game Settings")
         Form.resize(appWidth, appHeight)
@@ -219,7 +220,7 @@ class LoopController:
             appWidth * 0.625, appHeight * 0.8125,
             appWidth * 0.25, appHeight * 0.125
         )
-        startButton.clicked.connect(lambda: self.startGame(self.playerList))
+        startButton.clicked.connect(self.startGame)
         #
         cancelButton = QtWidgets.QPushButton(Form)
         cancelButton.setText("Back to Menu")
@@ -234,13 +235,16 @@ class LoopController:
         
     
     #helpers for loadGame
-    def startGame(self, playerList):
-        self.playerList = playerList
+    def startGame(self):
+        print(self.playerList)
         self.loopNum = 2 #go to gameplay
         QtWidgets.QApplication.closeAllWindows()
     def backToMenu(self):
         self.loopNum = 0 #go to main menu
         QtWidgets.QApplication.closeAllWindows()
+    def closing(self):
+        if self.loopNum == 0: self.backToMenu()
+        elif self.loopNum == 2: self.startGame()
 
     def mainMenuLoop(self, window:pygame.Surface):
         window.fill(WHITE)
