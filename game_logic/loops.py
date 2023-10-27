@@ -4,17 +4,26 @@ from .helpers import *
 import sys
 import pygame
 from pygame.locals import *
+from PySide6 import QtWidgets
 
 class LoopController:
     def __init__(self) -> None:
         self.loopNum = 0
-    
+        self.winnerList = list()
+        self.replayRecord = list()
+        self.playerList = [Greedy2BotPlayer(), Greedy2BotPlayer()]
+        pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
+
     def mainLoop(self, window: pygame.Surface):
         if self.loopNum == 0:
             self.mainMenuLoop(window)
+        elif self.loopNum == 1:
+            self.loadPlayerLoop()
         elif self.loopNum == 2:
-            winnerList, replayRecord = self.gameplayLoop(
-                window, [HumanPlayer(), Greedy2BotPlayer()])
+            self.winnerList, self.replayRecord = self.gameplayLoop(
+                window, self.playerList)
+        elif self.loopNum == 3:
+            self.gameOverLoop(window, self.winnerList, self.replayRecord)
 
     def gameplayLoop(self, window: pygame.Surface, players: list[Player]):
         playingPlayerIndex = 0
@@ -52,7 +61,7 @@ class LoopController:
             else:
                 start_coor, end_coor = playingPlayer.pickMove(g)
             g.movePiece(start_coor, end_coor)
-            replayRecord.append(str(start_coor)+' '+str(end_coor))
+            replayRecord.append(str(start_coor)+'to'+str(end_coor))
             winning = g.checkWin(playingPlayer.getPlayerNum())
             if winning and len(players) == 2:
                 if humanPlayerNum != 0:
@@ -61,11 +70,10 @@ class LoopController:
                     g.drawBoard(window)
                 playingPlayer.has_won = True
                 returnStuff[0].append(playingPlayer.getPlayerNum())
-                #TODO: show the message on screen
                 print('The winner is Player %d' % playingPlayer.getPlayerNum())
                 returnStuff[1] = replayRecord
-                #pygame.quit(); sys.exit()
-                self.loopNum = 0 #TODO: change to 3 after gameOverLoop
+                self.loopNum = 3
+                #print(returnStuff)
                 return returnStuff
             elif winning and len(players) == 3:
                 playingPlayer.has_won = True
@@ -108,6 +116,7 @@ class LoopController:
         pass #TODO
 
     def gameOverLoop(self, window: pygame.Surface, winnerList: list, replayRecord: list):
+        #print(winnerList); print(replayRecord)
         #winner announcement text
         if len(winnerList) == 1:
             winnerString = 'Player %d wins' % winnerList[0]
@@ -131,7 +140,8 @@ class LoopController:
             mouse_pos = pygame.mouse.get_pos()
             mouse_left_click = pygame.mouse.get_pressed()[0]
             if menuButton.isClicked(mouse_pos, mouse_left_click):
-                return 1
+                self.loopNum = 0
+                break
             if exportReplayButton.isClicked(mouse_pos, mouse_left_click):
                 with open("./replays/replay.txt", mode="w+") as f:
                     for i in replayRecord:
@@ -142,15 +152,102 @@ class LoopController:
             exportReplayButton.draw(window, mouse_pos, mouse_left_click)
             pygame.display.update()
 
-    def loadPlayerLoop(self, window: pygame.Surface):
-        window.fill(WHITE)
-        #do_stuff
-        pygame.display.update()
+    def loadPlayerLoop(self):
+        appModifier = 0.75
+        appWidth = WIDTH * appModifier
+        appHeight = HEIGHT * appModifier
+        #
+        if not QtWidgets.QApplication.instance():
+            app = QtWidgets.QApplication(sys.argv)
+        else:
+            app = QtWidgets.QApplication.instance()
+        app.aboutToQuit.connect(self.backToMenu)
+        Form = QtWidgets.QWidget()
+        Form.setWindowTitle("Game Settings")
+        Form.resize(appWidth, appHeight)
+        #
+        box = QtWidgets.QWidget(Form)
+        box.setGeometry(
+            appWidth * 0.0625, appHeight * 0.0625,
+            appWidth * 0.875, appHeight * 0.625)
+        grid = QtWidgets.QGridLayout(box)
+        #
+        label_pNum = QtWidgets.QLabel(Form)
+        label_pNum.setText("Number of Players")
+        rButton_2P = QtWidgets.QRadioButton(Form)
+        rButton_2P.setText('2')
+        rButton_2P.toggled.connect(
+            lambda: label_p3Type.setStyleSheet("color: #878787;"))
+        rButton_2P.toggled.connect(
+            lambda: cBox_p3.setDisabled(True))
+        rButton_3P = QtWidgets.QRadioButton(Form)
+        rButton_3P.setText('3')
+        rButton_3P.setChecked(True)
+        rButton_3P.toggled.connect(
+            lambda: label_p3Type.setStyleSheet("color: #000000;"))
+        rButton_3P.toggled.connect(
+            lambda: cBox_p3.setDisabled(False))
+        label_p1Type = QtWidgets.QLabel(Form)
+        label_p1Type.setText("Player 1:")
+        label_p2Type = QtWidgets.QLabel(Form)
+        label_p2Type.setText("Player 2:")
+        label_p3Type = QtWidgets.QLabel(Form)
+        label_p3Type.setText("Player 3:")
+        cBox_p1 = QtWidgets.QComboBox(Form)
+        cBox_p1.addItems(['place','holder'])
+        cBox_p1.setCurrentIndex(0)
+        cBox_p2 = QtWidgets.QComboBox(Form)
+        cBox_p2.addItems(['place','holder'])
+        cBox_p1.setCurrentIndex(1)
+        cBox_p3 = QtWidgets.QComboBox(Form)
+        cBox_p3.addItems(['place','holder'])
+        cBox_p1.setCurrentIndex(1)
+        #
+        grid.addWidget(label_pNum, 0, 0, 1, 2)
+        grid.addWidget(rButton_2P, 0, 2)
+        grid.addWidget(rButton_3P, 0, 3)
+        grid.addWidget(label_p1Type, 1, 0, 1, 2)
+        grid.addWidget(label_p2Type, 2, 0, 1, 2)
+        grid.addWidget(label_p3Type, 3, 0, 1, 2)
+        grid.addWidget(cBox_p1, 1, 2, 1, 2)
+        grid.addWidget(cBox_p2, 2, 2, 1, 2)
+        grid.addWidget(cBox_p3, 3, 2, 1, 2)
+        #
+        startButton = QtWidgets.QPushButton(Form)
+        startButton.setText("Start Game")
+        startButton.setGeometry(
+            appWidth * 0.625, appHeight * 0.8125,
+            appWidth * 0.25, appHeight * 0.125
+        )
+        startButton.clicked.connect(lambda: self.startGame(self.playerList))
+        #
+        cancelButton = QtWidgets.QPushButton(Form)
+        cancelButton.setText("Back to Menu")
+        cancelButton.setGeometry(
+            appWidth * 0.125, appHeight * 0.8125,
+            appWidth * 0.25, appHeight * 0.125
+        )
+        cancelButton.clicked.connect(self.backToMenu)
+        #
+        Form.show()
+        app.exec()
+        
+    
+    #helpers for loadGame
+    def startGame(self, playerList):
+        self.playerList = playerList
+        self.loopNum = 2 #go to gameplay
+        QtWidgets.QApplication.closeAllWindows()
+    def backToMenu(self):
+        self.loopNum = 0 #go to main menu
+        QtWidgets.QApplication.closeAllWindows()
 
     def mainMenuLoop(self, window:pygame.Surface):
         window.fill(WHITE)
-        playButton = TextButton("Play", 350, 200, 150, 70)
-        loadReplayButton = TextButton("Load replay", 350, 400, 150, 70)
+        playButton = TextButton(
+            "Play", 350, 200, 150, 70, font_size=32)
+        loadReplayButton = TextButton(
+            "Load replay", 350, 400, 150, 70, font_size=32)
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -160,7 +257,7 @@ class LoopController:
             mouse_left_click = pygame.mouse.get_pressed()[0]
             if playButton.isClicked(mouse_pos, mouse_left_click):
                 print("play")
-                self.loopNum = 2
+                self.loopNum = 1
                 break
                 #TODO: loadPlayerLoop
             if loadReplayButton.isClicked(mouse_pos, mouse_left_click):
