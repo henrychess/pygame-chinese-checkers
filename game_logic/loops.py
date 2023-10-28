@@ -12,17 +12,15 @@ class LoopController:
         self.loopNum = 0
         self.winnerList = list()
         self.replayRecord = list()
-        self.playerStrList = [
-            "HumanPlayer",
-            "RandomBotPlayer",
-            "GreedyRandomBotPlayer",
-            "Greedy1BotPlayer",
-            "Greedy2BotPlayer"
-        ]
+        self.playerTypes = {}
+        # key: class name strings
+        # value: class without ()
+        for i in PlayerMeta.playerTypes:
+            self.playerTypes[i.__name__] = i
         self.playerList = [
-            eval(f"{self.playerStrList[0]}()",),
-            eval(f"{self.playerStrList[1]}()",),
-            eval(f"{self.playerStrList[2]}()",)
+            HumanPlayer(),
+            Greedy1BotPlayer(),
+            Greedy2BotPlayer()
         ]
         pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
 
@@ -38,7 +36,7 @@ class LoopController:
         elif self.loopNum == 3:
             self.gameOverLoop(window, self.winnerList, self.replayRecord)
 
-    def gameplayLoop(self, window: pygame.Surface, players: list[Player]):
+    def gameplayLoop(self, window: pygame.Surface, playerss: list[Player]):
         playingPlayerIndex = 0
         humanPlayerNum = 0
         #returnStuff[0] is the winning player number
@@ -48,6 +46,7 @@ class LoopController:
         returnStuff = [[],[]]
         replayRecord = []
         #replayRecord[0] marks the number of players
+        players = copy.deepcopy(playerss)
         while None in players: players.remove(None)
         if len(players) > 3: players = players[:3]
         players[0].setPlayerNum(1)
@@ -167,7 +166,7 @@ class LoopController:
             pygame.display.update()
 
     def loadPlayerLoop(self):
-        #print(self.playerList)
+        loaded = False
         appModifier = 0.75
         appWidth = WIDTH * appModifier
         appHeight = HEIGHT * appModifier
@@ -208,7 +207,7 @@ class LoopController:
             lambda: cBox_p3.setDisabled(False))
         rButton_3P.toggled.connect(
             lambda: setItem(self.playerList, 2, 
-            eval(f"{self.playerStrList[cBox_p3.currentIndex()]}()")))
+            self.playerTypes[cBox_p3.currentText()]()))
         label_p1Type = QtWidgets.QLabel(Form)
         label_p1Type.setText("Player 1:")
         label_p2Type = QtWidgets.QLabel(Form)
@@ -220,21 +219,25 @@ class LoopController:
         cBox_p3 = QtWidgets.QComboBox(Form)
         cBoxes = (cBox_p1, cBox_p2, cBox_p3)
         
-        for i in range(3):
-            grid.addWidget(cBoxes[i], i+1, 2, 1, 2)
-            cBoxes[i].addItems(self.playerStrList)
-            cBoxes[i].setCurrentIndex(i)
+        if not loaded:
+            initialPlayerList = [HumanPlayer, Greedy1BotPlayer, Greedy2BotPlayer]
+            for i in range(3):
+                grid.addWidget(cBoxes[i], i+1, 2, 1, 2)
+                cBoxes[i].addItems(list(self.playerTypes))
+                cBoxes[i].setCurrentIndex(list(self.playerTypes.values()).index(initialPlayerList[i]))
+            loaded = True
+            del initialPlayerList
 
         cBox_p1.currentIndexChanged.connect(
-            lambda: setItem(self.playerList, 0, eval(f"{self.playerStrList[i]}()")))
+            lambda: setItem(self.playerList, 0, self.playerTypes[cBox_p1.currentText()]()))
         cBox_p1.currentIndexChanged.connect(
             lambda: print(self.playerList))
         cBox_p2.currentIndexChanged.connect(
-            lambda: setItem(self.playerList, 1, eval(f"{self.playerStrList[i]}()")))
+            lambda: setItem(self.playerList, 1, self.playerTypes[cBox_p2.currentText()]()))
         cBox_p2.currentIndexChanged.connect(
             lambda: print(self.playerList))
         cBox_p3.currentIndexChanged.connect(
-            lambda: setItem(self.playerList, 2, eval(f"{self.playerStrList[i]}()")))
+            lambda: setItem(self.playerList, 2, self.playerTypes[cBox_p3.currentText()]()))
         cBox_p3.currentIndexChanged.connect(
             lambda: print(self.playerList))
         #
