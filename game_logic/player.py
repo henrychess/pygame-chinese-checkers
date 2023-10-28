@@ -7,8 +7,17 @@ import pygame
 import math
 from pygame.locals import *
 import sys
+from abc import ABC, ABCMeta, abstractmethod
 
-class Player:
+class PlayerMeta(ABCMeta):
+    playerTypes = []
+
+    def __init__(cls, name, bases, attrs):
+        if ABC not in bases:
+            PlayerMeta.playerTypes.append(cls)
+        super().__init__(name, bases, attrs)
+
+class Player(ABC, metaclass=PlayerMeta):
     def __init__(self):
         self.playerNum = 0
         self.has_won = False
@@ -17,9 +26,9 @@ class Player:
     def setPlayerNum(self, num: int):
         self.playerNum = num
     
+    @abstractmethod
     def pickMove(self, g:Game):
-        #dummy function that should be overridden
-        pass
+        ...
 
 class RandomBotPlayer(Player):
     def __init__(self):
