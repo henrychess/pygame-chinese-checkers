@@ -7,11 +7,23 @@ from pygame.locals import *
 from PySide6 import QtWidgets
 
 class LoopController:
+    
     def __init__(self) -> None:
         self.loopNum = 0
         self.winnerList = list()
         self.replayRecord = list()
-        self.playerList = [Greedy2BotPlayer(), Greedy2BotPlayer()]
+        self.playerStrList = [
+            "HumanPlayer",
+            "RandomBotPlayer",
+            "GreedyRandomBotPlayer",
+            "Greedy1BotPlayer",
+            "Greedy2BotPlayer"
+        ]
+        self.playerList = [
+            eval(f"{self.playerStrList[0]}()",),
+            eval(f"{self.playerStrList[1]}()",),
+            eval(f"{self.playerStrList[2]}()",)
+        ]
         pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
 
     def mainLoop(self, window: pygame.Surface):
@@ -36,6 +48,7 @@ class LoopController:
         returnStuff = [[],[]]
         replayRecord = []
         #replayRecord[0] marks the number of players
+        while None in players: players.remove(None)
         if len(players) > 3: players = players[:3]
         players[0].setPlayerNum(1)
         players[1].setPlayerNum(2)
@@ -154,6 +167,7 @@ class LoopController:
             pygame.display.update()
 
     def loadPlayerLoop(self):
+        #print(self.playerList)
         appModifier = 0.75
         appWidth = WIDTH * appModifier
         appHeight = HEIGHT * appModifier
@@ -181,6 +195,10 @@ class LoopController:
             lambda: label_p3Type.setStyleSheet("color: #878787;"))
         rButton_2P.toggled.connect(
             lambda: cBox_p3.setDisabled(True))
+        rButton_2P.toggled.connect(
+            lambda: setItem(self.playerList, 2, None))
+        rButton_2P.toggled.connect(
+            lambda: print(self.playerList))
         rButton_3P = QtWidgets.QRadioButton(Form)
         rButton_3P.setText('3')
         rButton_3P.setChecked(True)
@@ -188,6 +206,9 @@ class LoopController:
             lambda: label_p3Type.setStyleSheet("color: #000000;"))
         rButton_3P.toggled.connect(
             lambda: cBox_p3.setDisabled(False))
+        rButton_3P.toggled.connect(
+            lambda: setItem(self.playerList, 2, 
+            eval(f"{self.playerStrList[cBox_p3.currentIndex()]}()")))
         label_p1Type = QtWidgets.QLabel(Form)
         label_p1Type.setText("Player 1:")
         label_p2Type = QtWidgets.QLabel(Form)
@@ -195,14 +216,27 @@ class LoopController:
         label_p3Type = QtWidgets.QLabel(Form)
         label_p3Type.setText("Player 3:")
         cBox_p1 = QtWidgets.QComboBox(Form)
-        cBox_p1.addItems(['place','holder'])
-        cBox_p1.setCurrentIndex(0)
         cBox_p2 = QtWidgets.QComboBox(Form)
-        cBox_p2.addItems(['place','holder'])
-        cBox_p1.setCurrentIndex(1)
         cBox_p3 = QtWidgets.QComboBox(Form)
-        cBox_p3.addItems(['place','holder'])
-        cBox_p1.setCurrentIndex(1)
+        cBoxes = (cBox_p1, cBox_p2, cBox_p3)
+        
+        for i in range(3):
+            grid.addWidget(cBoxes[i], i+1, 2, 1, 2)
+            cBoxes[i].addItems(self.playerStrList)
+            cBoxes[i].setCurrentIndex(i)
+
+        cBox_p1.currentIndexChanged.connect(
+            lambda: setItem(self.playerList, 0, eval(f"{self.playerStrList[i]}()")))
+        cBox_p1.currentIndexChanged.connect(
+            lambda: print(self.playerList))
+        cBox_p2.currentIndexChanged.connect(
+            lambda: setItem(self.playerList, 1, eval(f"{self.playerStrList[i]}()")))
+        cBox_p2.currentIndexChanged.connect(
+            lambda: print(self.playerList))
+        cBox_p3.currentIndexChanged.connect(
+            lambda: setItem(self.playerList, 2, eval(f"{self.playerStrList[i]}()")))
+        cBox_p3.currentIndexChanged.connect(
+            lambda: print(self.playerList))
         #
         grid.addWidget(label_pNum, 0, 0, 1, 2)
         grid.addWidget(rButton_2P, 0, 2)
@@ -210,9 +244,6 @@ class LoopController:
         grid.addWidget(label_p1Type, 1, 0, 1, 2)
         grid.addWidget(label_p2Type, 2, 0, 1, 2)
         grid.addWidget(label_p3Type, 3, 0, 1, 2)
-        grid.addWidget(cBox_p1, 1, 2, 1, 2)
-        grid.addWidget(cBox_p2, 2, 2, 1, 2)
-        grid.addWidget(cBox_p3, 3, 2, 1, 2)
         #
         startButton = QtWidgets.QPushButton(Form)
         startButton.setText("Start Game")
@@ -232,7 +263,6 @@ class LoopController:
         #
         Form.show()
         app.exec()
-        
     
     #helpers for loadGame
     def startGame(self):
@@ -243,7 +273,7 @@ class LoopController:
         self.loopNum = 0 #go to main menu
         QtWidgets.QApplication.closeAllWindows()
     def closing(self):
-        if self.loopNum == 0: self.backToMenu()
+        if self.loopNum == 0 or self.loopNum == 1: self.backToMenu()
         elif self.loopNum == 2: self.startGame()
 
     def mainMenuLoop(self, window:pygame.Surface):
