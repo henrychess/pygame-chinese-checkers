@@ -32,7 +32,8 @@ def checkJump(moves: list, board: dict, destination: tuple, direction: tuple, pl
             except RecursionError:
                 print("RecursionError from " + str(destination) + " to " + str(dest))
 
-
+def setItem(listt, index, item):
+    listt[index] = item
 
 def obj_to_subj_coor(c: tuple, playerNum: int):
     p, q, r = c[0], c[1], 0-c[0]-c[1]
