@@ -1,6 +1,6 @@
 # pygame-chinese-checkers
 
-WARNING: This is not a complete project. It contains a lot of bugs.
+WARNING: This is not a complete project. Some functionalities have not been implemented yet. You may encounter bugs.
 
 You can run `main.py` if you have `pygame-ce` and `PySide6` installed.
 If not, install them first with:
