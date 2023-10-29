@@ -2,8 +2,6 @@ from .literals import *
 import math
 import pygame
 from colorsys import rgb_to_hls, hls_to_rgb
-from tkinter import *
-from tkinter import filedialog
 
 def add(a: tuple, b: tuple):
     '''Insert two tuples, return them added as if they were vectors.'''
@@ -90,14 +88,6 @@ def ints(s):
     if isinstance(s,tuple): return tuple(l)
     if isinstance(s, list): return l
     if isinstance(s, set): return set(l)
-
-def prompt_file():
-    """Create a Tk file dialog and cleanup when finished"""
-    top = Tk()
-    top.withdraw()  # hide window
-    file_name = filedialog.askopenfilename(parent=top)
-    top.destroy()
-    return file_name
 
 class Button:
     def __init__(self, x:int, y:int, width:int=150, height:int=100, enabled:bool=True, button_color:tuple=WHITE) -> None:
