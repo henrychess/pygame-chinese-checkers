@@ -144,7 +144,7 @@ class TextButton(Button):
         else:
             color = self.button_color
         pygame.draw.rect(window, color, self.buttonRect, 0, 5)
-        if self.isHovering(mouse_pos):
+        if self.isHovering(mouse_pos) and self.enabled:
             pygame.draw.rect(window, brighten_color(color, 0.25), self.buttonRect, 0, 5)
         pygame.draw.rect(window, BLACK, self.buttonRect, 2, 5)
         window.blit(text, textRect)
