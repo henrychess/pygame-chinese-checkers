@@ -2,7 +2,7 @@
 
 WARNING: This is not a complete project. Some functionalities have not been implemented yet. You may encounter bugs.
 
-I'm using Python 3.9.3 to test this project. It requires at least Python 3.7+.
+I'm using Python 3.9 to test this project. It requires at least Python 3.7+.
 
 You can run `main.py` if you have `pygame-ce` and `PySide6` installed.
 If not, install them first with:
