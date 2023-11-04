@@ -14,4 +14,4 @@ To run it, first open a terminal at the folder where this project is saved at, t
 
 When the game ends, you have to manually quit the game by clicking the X button on the top right corner (or top left, depending on your OS), or go to the terminal and press ctrl-C or command-C.
 
-Replay system has not been implemented yet.
+Update Nov 4 2023: implemented replay system
