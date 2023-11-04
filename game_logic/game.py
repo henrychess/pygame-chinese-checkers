@@ -15,7 +15,7 @@ class Game:
         self.circleRadius = 15 #board square (circle) radius
         self.centerCoor = (WIDTH/2, HEIGHT/2) #window size is 800*600
         #
-        self.screen_is_altered = False
+        # self.screen_is_altered = False
 
     def createBoard(self, playerCount: int):
         Board = {}
@@ -134,7 +134,7 @@ class Game:
             pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
             if isinstance(self.board[coor], Piece):
                 pygame.draw.circle(window, PLAYER_COLORS[self.board[coor].getPlayerNum()-1], c, self.circleRadius-2)
-        self.screen_is_altered = False
+        # self.screen_is_altered = False
 
     def drawCircles(self, window:pygame.Surface, playerNum: int):
         for obj_coor in self.board:
@@ -144,7 +144,7 @@ class Game:
             pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
             if isinstance(self.board[obj_coor], Piece):
                 pygame.draw.circle(window, PLAYER_COLORS[self.board[obj_coor].getPlayerNum()-1], c, self.circleRadius-2)
-        self.screen_is_altered = False
+        # self.screen_is_altered = False
 
     def drawLines(self, window: pygame.Surface):
         '''Draws the black lines of the board. Doesn't need playerNum'''
@@ -160,7 +160,7 @@ class Game:
                 n = add(self.centerCoor, mult(h2c(n_coor),self.unitLength))
                 pygame.draw.line(window, BLACK, c, n, self.lineWidth)
             neighbors.clear()
-        self.screen_is_altered = False
+        # self.screen_is_altered = False
 
     def drawPolygons(self, window: pygame.Surface):
         #center hexagon
