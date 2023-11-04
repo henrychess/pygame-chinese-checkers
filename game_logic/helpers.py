@@ -67,12 +67,7 @@ def h2c(coor: tuple):
 def abs_coors(center:tuple, coor:tuple, unit:int):
     '''absolute coordinates on screen'''
     return add(center, mult(h2c(coor),unit))
-def any_of(*t):
-    l = []
-    for a in t:
-        for i in a:
-            l.append(i)
-    return l
+
 def adjust_color_brightness(rgbTuple:tuple, factor):
     r, g, b = rgbTuple[0], rgbTuple[1], rgbTuple[2]
     h, l, s = rgb_to_hls(r / 255.0, g / 255.0, b / 255.0)
@@ -90,14 +85,20 @@ def ints(s):
     if isinstance(s, set): return set(l)
 
 class Button:
-    def __init__(self, x:int, y:int, width:int=150, height:int=100, enabled:bool=True, button_color:tuple=WHITE) -> None:
-        self.x=x; self.y=y; self.width = width; self.height = height
+    def __init__(self, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=150, height:int=100, enabled:bool=True, button_color:tuple=ORANGE) -> None:
+        """ self.x=x; self.y=y; self.width = width; self.height = height """
         self.enabled=enabled; self.button_color=button_color
-        self.buttonRect = pygame.rect.Rect(self.x, self.y)
+        if centerx and centery:
+            self.buttonRect = pygame.Rect(
+                centerx - width / 2,
+                centery - height / 2,
+                width, height)
+        else:
+            self.buttonRect = pygame.Rect(x, y, width, height)
     
-    def draw(self, window: pygame.Surface, mouse_pos, mouse_left_click):
+    def draw(self, window: pygame.Surface, mouse_pos):
         if self.enabled:
-            if self.isClicked(mouse_pos, mouse_left_click):
+            if self.isHovering(mouse_pos) and self.enabled:
                 pygame.draw.rect(window, brighten_color(self.button_color, 0.25), self.buttonRect, 0, 5)
             else: pygame.draw.rect(window, self.button_color, self.buttonRect, 0, 5)
             pygame.draw.rect(window, BLACK, self.buttonRect, 2, 5)
@@ -105,8 +106,6 @@ class Button:
             pygame.draw.rect(window, GRAY, self.buttonRect, 0, 5)
         
     def isClicked(self, mouse_pos, mouse_left_click):
-        mouse_pos = pygame.mouse.get_pos()
-        mouse_left_click = pygame.mouse.get_pressed()[0]
         if mouse_left_click and self.buttonRect.collidepoint(mouse_pos) and self.enabled:
             return True
         else: return False
@@ -117,14 +116,20 @@ class Button:
         else: return False
 
 class TextButton(Button):
-    def __init__(self, text: str, x:int, y:int, width:int=150, height:int=100, enabled:bool=True, font=None, font_size=16, text_color:tuple=BLACK, button_color:tuple=ORANGE):
-        self.text = text; self.x = x; self.y = y
-        self.width = width; self.height = height; self.enabled = enabled
+    def __init__(self, text: str, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=150, height:int=100, enabled:bool=True, font=None, font_size=16, text_color:tuple=BLACK, button_color:tuple=ORANGE):
+        #super().__init__()
+        self.enabled=enabled; self.button_color=button_color
+        if centerx and centery:
+            self.buttonRect = pygame.Rect(
+                centerx - width / 2,
+                centery - height / 2,
+                width, height)
+        else:
+            self.buttonRect = pygame.Rect(x, y, width, height)
+        self.text = text
         self.font = font; self.font_size = font_size; self.text_color = text_color; self.button_color = button_color
-        self.buttonRect = pygame.rect.Rect(self.x, self.y, self.width, self.height)
-        #self.draw()
     
-    def draw(self, window:pygame.Surface, mouse_pos, mouse_left_click):
+    def draw(self, window:pygame.Surface, mouse_pos):
         text = pygame.font.SysFont(self.font, self.font_size).render(self.text, True, self.text_color)
         textRect = text.get_rect()
         textRect.center = self.buttonRect.center
