@@ -168,6 +168,12 @@ class LoopController:
             left = False; right = False
             highlight = []
             window.fill(WHITE)
+            hintText = pygame.font.Font(size=30).render(
+                "Use the buttons or the left and right arrow keys to navigate through the game",
+                antialias=True, color=BLACK, wraplength=int(WIDTH*0.375))
+            hintTextRect = hintText.get_rect()
+            hintTextRect.topright = (WIDTH, 1)
+            window.blit(hintText, hintTextRect)
             while True:
                 ev = pygame.event.wait()
                 if ev.type == QUIT:
@@ -208,7 +214,8 @@ class LoopController:
             app = QtWidgets.QApplication(sys.argv)
         else:
             app = QtWidgets.QApplication.instance()
-        filePath = QtWidgets.QFileDialog.getOpenFileName(dir=f"{os.path.abspath('.')}/replays", filter="*.txt")[0]
+        if not os.path.isdir("./replays"): os.mkdir("./replays")
+        filePath = QtWidgets.QFileDialog.getOpenFileName(dir="./replays", filter="*.txt")[0]
         if filePath:
             print(filePath)
             self.loopNum = 4
@@ -247,6 +254,7 @@ class LoopController:
                 break
             if exportReplayButton.isClicked(mouse_pos, mouse_left_click):
                 curTime = strftime("%Y%m%d-%H%M%S")
+                if not os.path.isdir("./replays"): os.mkdir("./replays")
                 with open(f"./replays/replay-{curTime}.txt", mode="w+") as f:
                     for i in range(len(replayRecord)):
                         if i < len(replayRecord) - 1: f.write(str(replayRecord[i])+'\n')
