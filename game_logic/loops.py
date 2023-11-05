@@ -27,7 +27,7 @@ class LoopController:
         pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
 
     def mainLoop(self, window: pygame.Surface):
-        print(f"Loop goes on with loopNum {self.loopNum}")
+        # print(f"Loop goes on with loopNum {self.loopNum}")
         if self.loopNum == 0:
             pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
             self.filePath = False
@@ -68,7 +68,8 @@ class LoopController:
         g = Game(len(players))
         #some other settings
         replayRecord.append(str(len(players)))
-        if exactly_one_is_human(players):
+        oneHuman = exactly_one_is_human(players)
+        if oneHuman:
             for player in players:
                 if isinstance(player, HumanPlayer):
                     humanPlayerNum = player.getPlayerNum()
@@ -76,12 +77,12 @@ class LoopController:
         #start the game loop
         while True:
             playingPlayer = players[playingPlayerIndex]
-            # If 50 milliseconds (0.05 seconds) have passed
+            # If 100 milliseconds (0.1 seconds) have passed
             # and there is no event, ev will be NOEVENT and
             # the bot player will make a move.
             # Otherwise, the bot player won't move until you
             # move your mouse.
-            ev = pygame.event.wait(50)
+            ev = pygame.event.wait(100)
             if ev.type == QUIT: pygame.quit(); sys.exit()
             window.fill(GRAY)
             if humanPlayerNum != 0:
@@ -97,7 +98,8 @@ class LoopController:
             else:
                 start_coor, end_coor = playingPlayer.pickMove(g)
             g.movePiece(start_coor, end_coor)
-            highlight = [start_coor, end_coor]
+            if oneHuman: highlight = [obj_to_subj_coor(start_coor, humanPlayerNum), obj_to_subj_coor(end_coor, humanPlayerNum)]
+            else: highlight = [start_coor, end_coor]
             replayRecord.append(str(start_coor)+'to'+str(end_coor))
             winning = g.checkWin(playingPlayer.getPlayerNum())
             if winning and len(players) == 2:
@@ -107,7 +109,7 @@ class LoopController:
                     g.drawBoard(window)
                 playingPlayer.has_won = True
                 returnStuff[0].append(playingPlayer.getPlayerNum())
-                print('The winner is Player %d' % playingPlayer.getPlayerNum())
+                # print('The winner is Player %d' % playingPlayer.getPlayerNum())
                 returnStuff[1] = replayRecord
                 self.loopNum = 3
                 #print(returnStuff)
@@ -117,7 +119,7 @@ class LoopController:
                 returnStuff[0].append(playingPlayer.getPlayerNum())
                 players.remove(playingPlayer)
                 #TODO: show the message on screen
-                print("The first winner is Player %d" % playingPlayer.getPlayerNum())
+                # print("The first winner is Player %d" % playingPlayer.getPlayerNum())
             if playingPlayerIndex >= len(players) - 1: playingPlayerIndex = 0
             else: playingPlayerIndex += 1
 
@@ -217,11 +219,11 @@ class LoopController:
         if not os.path.isdir("./replays"): os.mkdir("./replays")
         filePath = QtWidgets.QFileDialog.getOpenFileName(dir="./replays", filter="*.txt")[0]
         if filePath:
-            print(filePath)
+            # print(filePath)
             self.loopNum = 4
             return filePath
         else:
-            print("cancelled")
+            # print("cancelled")
             self.loopNum = 0
             return False
 
@@ -296,8 +298,8 @@ class LoopController:
             lambda: cBox_p3.setDisabled(True))
         rButton_2P.toggled.connect(
             lambda: setItem(self.playerList, 2, None))
-        rButton_2P.toggled.connect(
-            lambda: print(self.playerList))
+        # rButton_2P.toggled.connect(
+        #     lambda: print(self.playerList))
         rButton_3P = QtWidgets.QRadioButton(Form)
         rButton_3P.setText('3')
         rButton_3P.setChecked(True)
@@ -330,16 +332,16 @@ class LoopController:
 
         cBox_p1.currentIndexChanged.connect(
             lambda: setItem(self.playerList, 0, self.playerTypes[cBox_p1.currentText()]()))
-        cBox_p1.currentIndexChanged.connect(
-            lambda: print(self.playerList))
+        # cBox_p1.currentIndexChanged.connect(
+        #     lambda: print(self.playerList))
         cBox_p2.currentIndexChanged.connect(
             lambda: setItem(self.playerList, 1, self.playerTypes[cBox_p2.currentText()]()))
-        cBox_p2.currentIndexChanged.connect(
-            lambda: print(self.playerList))
+        # cBox_p2.currentIndexChanged.connect(
+        #     lambda: print(self.playerList))
         cBox_p3.currentIndexChanged.connect(
             lambda: setItem(self.playerList, 2, self.playerTypes[cBox_p3.currentText()]()))
-        cBox_p3.currentIndexChanged.connect(
-            lambda: print(self.playerList))
+        # cBox_p3.currentIndexChanged.connect(
+        #     lambda: print(self.playerList))
         #
         grid.addWidget(label_pNum, 0, 0, 1, 2)
         grid.addWidget(rButton_2P, 0, 2)
@@ -369,7 +371,7 @@ class LoopController:
     
     #helpers for loadPlayerLoop and replayLoop
     def startGame(self):
-        print(self.playerList)
+        # print(self.playerList)
         self.loopNum = 2 #go to gameplay
         QtWidgets.QApplication.closeAllWindows()
     def backToMenu(self):
@@ -401,11 +403,11 @@ class LoopController:
             mouse_pos = pygame.mouse.get_pos()
             mouse_left_click = ev.type == MOUSEBUTTONDOWN
             if playButton.isClicked(mouse_pos, mouse_left_click):
-                print("play")
+                # print("play")
                 self.loopNum = 1
                 break
             if loadReplayButton.isClicked(mouse_pos, mouse_left_click):
-                print('load-replay')
+                # print('load-replay')
                 self.loopNum = 5
                 break
 
