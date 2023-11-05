@@ -25,4 +25,7 @@ to start the game. If nothing goes wrong, the game should prompt you to select p
 
 If you want to close the window, you have to manually quit the game by clicking the X button on the top right corner (or top left, depending on your OS), or go to the terminal and press ctrl-C or command-C.
 
-Update Nov 4 2023: implemented replay system
+## Features
+- A game interface that supports 2 to 3 players, and 1 to 3 human players
+- Export replay to file
+- Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
