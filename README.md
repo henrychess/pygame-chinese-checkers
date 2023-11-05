@@ -1,15 +1,22 @@
 # pygame-chinese-checkers
 
-WARNING: This is a hobby project by a beginner/amateur in programming. You may encounter bugs.
+> [!NOTE]
+> This is a hobby project by a beginner/amateur in programming. You may encounter bugs.
 
-I'm using Python 3.9 to test this project. It requires Python 3.8+.
-
-You can run `main.py` if you have `pygame-ce` and `PySide6` installed.
-If not, install them first with:
+## Requirements
+- Python 3.8+
+- `pygame-ce` and `PySide6`
+To install Python itself, head to the [official website](https://www.python.org/) and follow their instructions.
+You may also check your Python version by pasting this in your terminal:
+```
+python3 --version
+```
+To install `pygame-ce` and `PySide6`, paste this into your terminal (after you're sure you have Python 3.8+):
 ```
 python3 -m pip install -U pygame-ce PySide6
 ```
 
+## Running the program
 To run it, first open a terminal at the folder where this project is saved at, then use:
 ```
 python3 main.py
