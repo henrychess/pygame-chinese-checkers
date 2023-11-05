@@ -10,7 +10,7 @@ If not, install them first with:
 python3 -m pip install -U pygame-ce PySide6
 ```
 
-To run it, first open a terminal at the folder where this project is saved at, then use `python3 main.py` to start the game. If nothing goes wrong, the game should prompt you to select players after clicking Play.
+To run it, first open a terminal at the folder where this project is saved at, then use ```python3 main.py``` to start the game. If nothing goes wrong, the game should prompt you to select players after clicking Play.
 
 If you want to close the window, you have to manually quit the game by clicking the X button on the top right corner (or top left, depending on your OS), or go to the terminal and press ctrl-C or command-C.
 
