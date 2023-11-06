@@ -37,4 +37,4 @@ If you want to close the window, you have to manually quit the game by clicking 
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
 
-[Here is a showcase of a program running on Mac OS.](https://youtu.be/zsmd8o0BoDw)
+[Here is a showcase of the program running on Mac OS.](https://youtu.be/zsmd8o0BoDw)
