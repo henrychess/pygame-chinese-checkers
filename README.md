@@ -12,6 +12,12 @@ You may also check your Python version by pasting this in your terminal:
 ```
 python3 --version
 ```
+If you have multiple versions of Python, you can specify the Python version you're using. Instead of simply `python3`, you can instead use:
+```
+python3.10 [options]...
+```
+or whatever version your Python is.
+
 To install `pygame-ce` and `PySide6`, paste this into your terminal (after you're sure you have Python 3.8+):
 ```
 python3 -m pip install -U pygame-ce PySide6
