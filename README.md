@@ -36,3 +36,5 @@ If you want to close the window, you have to manually quit the game by clicking 
 - A game interface that supports 2 to 3 players, and 1 to 3 human players
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
+
+[Here is a showcase of a program running on Mac OS.](https://youtu.be/zsmd8o0BoDw)
