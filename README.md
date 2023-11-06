@@ -6,6 +6,7 @@
 ## Requirements
 - Python 3.8+
 - `pygame-ce` and `PySide6`
+
 To install Python itself, head to the [official website](https://www.python.org/) and follow their instructions.
 You may also check your Python version by pasting this in your terminal:
 ```
