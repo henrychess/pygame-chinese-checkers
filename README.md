@@ -11,7 +11,7 @@
 [Here is a showcase of the program running on Mac OS.](https://youtu.be/zsmd8o0BoDw)
 
 ## Requirements
-- Python 3.8+
+- Python 3.9+
 - `pygame-ce` and `PySide6`
 
 To install Python itself, head to the [official website](https://www.python.org/) and follow their instructions.
