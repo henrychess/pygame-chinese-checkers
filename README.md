@@ -18,23 +18,34 @@
 To install Python itself, head to the [official website](https://www.python.org/) and follow their instructions.
 You may also check your Python version by pasting this in your terminal:
 ```
-python3 --version
+python --version
 ```
-If you have multiple versions of Python, you can specify the Python version you're using. Instead of simply `python3`, you can instead use:
+If you're on Linux/Mac and you have multiple versions of Python, you can specify the Python version you're using. Instead of simply `python`, you can instead use:
 ```
 python3.10 [options]...
 ```
 or whatever version your Python is.
 
-To install `pygame-ce` and `PySide6`, paste this into your terminal (after you're sure you have Python 3.8+):
+To install `pygame-ce` and `PySide6`, paste this into your terminal (after you're sure you have Python 3.9+):
 ```
-python3 -m pip install -U pygame-ce PySide6
+python -m pip install -U pygame-ce PySide6
 ```
 
 ## Running the program
-To run it, first open a terminal at the folder where this project is saved at, then use:
+To run it, first open a terminal at the folder where this project is saved at, or use the `cd` command in the terminal.
+The command on Linux/Mac should look like this:
 ```
-python3 main.py
+cd path/to/your/folder
+```
+On Windows, use this:
+```
+cd /d path\to\your\folder
+```
+The path to your folder may be copied from certain file managing programs or typed by hand. It's easier to just copy the path if you're on Windows though.
+
+When your working directory is where the game is stored, use:
+```
+python main.py
 ```
 to start the game. If nothing goes wrong, the game should prompt you to select players after clicking Play.
 
