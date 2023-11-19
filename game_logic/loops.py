@@ -6,6 +6,7 @@ import pygame
 from pygame.locals import *
 from PySide6 import QtWidgets
 from time import strftime
+from custom_bots import *
 
 class LoopController:
     
@@ -29,6 +30,11 @@ class LoopController:
     def mainLoop(self, window: pygame.Surface):
         # print(f"Loop goes on with loopNum {self.loopNum}")
         if self.loopNum == 0:
+            self.playerList = [
+                HumanPlayer(),
+                Greedy1BotPlayer(),
+                Greedy2BotPlayer()
+            ]
             pygame.event.set_allowed([QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP])
             self.filePath = False
             self.replayRecord = []
@@ -92,9 +98,19 @@ class LoopController:
             if highlight:
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[0], g.unitLength), g.circleRadius, g.lineWidth+2)
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[1], g.unitLength), g.circleRadius, g.lineWidth+2)
+            backButton = TextButton('Back to Menu', width=150, height=50, font_size=32)
+            mouse_pos = pygame.mouse.get_pos()
+            mouse_left_click = ev.type == MOUSEBUTTONDOWN
+            if backButton.isClicked(mouse_pos, mouse_left_click):
+                self.loopNum = 0
+                return ([], [])
+            backButton.draw(window, mouse_pos)
             pygame.display.update()
             if isinstance(playingPlayer, HumanPlayer):
                 start_coor, end_coor = playingPlayer.pickMove(g, window, humanPlayerNum, highlight)
+                if (not start_coor) and (not end_coor):
+                    self.loopNum = 0
+                    return ([], [])
             else:
                 start_coor, end_coor = playingPlayer.pickMove(g)
             g.movePiece(start_coor, end_coor)
