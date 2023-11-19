@@ -7,6 +7,7 @@
 - A game interface that supports 2 to 3 players, and 1 to 3 human players
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
+- (Nov 19, 2023 update) You may create custom bots in the `custom_bots` folder! It'll automatically be added into the game.
 
 [Here is a showcase of the program running on Mac OS.](https://youtu.be/zsmd8o0BoDw)
 
