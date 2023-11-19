@@ -1,7 +1,7 @@
 from game_logic.player import Player
 from game_logic.game import *
 
-class CustomBot(Player):
+class CustomBotTemplate(Player):
     def __init__(self):
         super().__init__()
     
