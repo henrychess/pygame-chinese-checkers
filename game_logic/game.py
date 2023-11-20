@@ -127,16 +127,7 @@ class Game:
         self.drawLines(window)
         self.drawCircles(window, playerNum)
 
-    def drawCircles(self, window:pygame.Surface):
-        for coor in self.board:
-            c = add(self.centerCoor, mult(h2c(coor),self.unitLength)) #absolute coordinates on screen
-            pygame.draw.circle(window, WHITE, c, self.circleRadius)
-            pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
-            if isinstance(self.board[coor], Piece):
-                pygame.draw.circle(window, PLAYER_COLORS[self.board[coor].getPlayerNum()-1], c, self.circleRadius-2)
-        # self.screen_is_altered = False
-
-    def drawCircles(self, window:pygame.Surface, playerNum: int):
+    def drawCircles(self, window:pygame.Surface, playerNum: int=1):
         for obj_coor in self.board:
             coor = obj_to_subj_coor(obj_coor, playerNum)
             c = add(self.centerCoor, mult(h2c(coor),self.unitLength)) #absolute coordinates on screen
