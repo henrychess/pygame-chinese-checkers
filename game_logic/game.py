@@ -127,15 +127,6 @@ class Game:
         self.drawLines(window)
         self.drawCircles(window, playerNum)
 
-    def drawCircles(self, window:pygame.Surface):
-        for coor in self.board:
-            c = add(self.centerCoor, mult(h2c(coor),self.unitLength)) #absolute coordinates on screen
-            pygame.draw.circle(window, WHITE, c, self.circleRadius)
-            pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
-            if isinstance(self.board[coor], Piece):
-                pygame.draw.circle(window, PLAYER_COLORS[self.board[coor].getPlayerNum()-1], c, self.circleRadius-2)
-        # self.screen_is_altered = False
-
     def drawCircles(self, window:pygame.Surface, playerNum: int):
         for obj_coor in self.board:
             coor = obj_to_subj_coor(obj_coor, playerNum)
@@ -144,7 +135,6 @@ class Game:
             pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
             if isinstance(self.board[obj_coor], Piece):
                 pygame.draw.circle(window, PLAYER_COLORS[self.board[obj_coor].getPlayerNum()-1], c, self.circleRadius-2)
-        # self.screen_is_altered = False
 
     def drawLines(self, window: pygame.Surface):
         '''Draws the black lines of the board. Doesn't need playerNum'''
@@ -162,18 +152,7 @@ class Game:
             neighbors.clear()
         # self.screen_is_altered = False
 
-    def drawPolygons(self, window: pygame.Surface):
-        #center hexagon
-        pygame.draw.polygon(window, WHITE, (abs_coors(self.centerCoor, (-4,4), self.unitLength), abs_coors(self.centerCoor, (0,4), self.unitLength), abs_coors(self.centerCoor, (4,0), self.unitLength), abs_coors(self.centerCoor, (4,-4), self.unitLength), abs_coors(self.centerCoor, (0,-4), self.unitLength), abs_coors(self.centerCoor, (-4,0), self.unitLength)))
-        #triangles
-        pygame.draw.polygon(window, YELLOW, (add(self.centerCoor,mult(h2c((-4,8)), self.unitLength)), add(self.centerCoor,mult(h2c((-4,4)), self.unitLength)), add(self.centerCoor,mult(h2c((0,4)), self.unitLength))))
-        pygame.draw.polygon(window, YELLOW, (add(self.centerCoor,mult(h2c((0,-4)), self.unitLength)), add(self.centerCoor,mult(h2c((4,-4)), self.unitLength)), add(self.centerCoor,mult(h2c((4,-8)), self.unitLength))))
-        pygame.draw.polygon(window, GREEN, (add(self.centerCoor,mult(h2c((-4,0)), self.unitLength)), add(self.centerCoor,mult(h2c((-4,-4)), self.unitLength)), add(self.centerCoor,mult(h2c((0,-4)), self.unitLength))))
-        pygame.draw.polygon(window, GREEN, (add(self.centerCoor,mult(h2c((0,4)), self.unitLength)), add(self.centerCoor,mult(h2c((4,4)), self.unitLength)), add(self.centerCoor,mult(h2c((4,0)), self.unitLength))))
-        pygame.draw.polygon(window, RED, (add(self.centerCoor,mult(h2c((4,0)), self.unitLength)), add(self.centerCoor,mult(h2c((8,-4)), self.unitLength)), add(self.centerCoor,mult(h2c((4,-4)), self.unitLength))))
-        pygame.draw.polygon(window, RED, (add(self.centerCoor,mult(h2c((-8,4)), self.unitLength)), add(self.centerCoor,mult(h2c((-4,4)), self.unitLength)), add(self.centerCoor,mult(h2c((-4,0)), self.unitLength))))
-
-    def drawPolygons(self, window: pygame.Surface, playerNum: int):
+    def drawPolygons(self, window: pygame.Surface, playerNum: int=1):
         #center hexagon
         pygame.draw.polygon(window, WHITE, (abs_coors(self.centerCoor, (-4,4), self.unitLength), abs_coors(self.centerCoor, (0,4), self.unitLength), abs_coors(self.centerCoor, (4,0), self.unitLength), abs_coors(self.centerCoor, (4,-4), self.unitLength), abs_coors(self.centerCoor, (0,-4), self.unitLength), abs_coors(self.centerCoor, (-4,0), self.unitLength)))
         #triangles
