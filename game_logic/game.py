@@ -135,6 +135,11 @@ class Game:
             pygame.draw.circle(window, BLACK, c, self.circleRadius, self.lineWidth)
             if isinstance(self.board[obj_coor], Piece):
                 pygame.draw.circle(window, PLAYER_COLORS[self.board[obj_coor].getPlayerNum()-1], c, self.circleRadius-2)
+            # coor_str = str(coor)
+            # text = pygame.font.Font(size=14).render(coor_str, True, BLACK, None)
+            # textRect = text.get_rect()
+            # textRect.center = c
+            # window.blit(text, textRect)
 
     def drawLines(self, window: pygame.Surface):
         '''Draws the black lines of the board. Doesn't need playerNum'''
