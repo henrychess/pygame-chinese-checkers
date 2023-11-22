@@ -5,9 +5,7 @@
 
 ## Functions
 
-The following three functions grab stuff
-that may be helpful for your bot to choose
-a move.
+The following three functions from `game_logic.game` grab stuff that may be helpful for your bot to choose a move.
 
 | Function | Return Data Type | Explanation |
 |----------|------------------|-------------|
@@ -16,7 +14,7 @@ a move.
 |`getBoolBoardState()`|`dict`|Similar to `getBoardState()`. However, it only uses `False` and `True` as value. `False` means the spot is vacant, and `True` means it is occupied.|
 
 When you return the coordinates, remember to 
-run the coordinates through subj_to_obj_coor(), 
+run the coordinates through `subj_to_obj_coor()`, 
 like in the example in `CustomBotTemplate.py`.
 
 ## Constants
