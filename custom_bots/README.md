@@ -7,7 +7,7 @@ The board of Chinese Checkers is a hexagonal board. There are three axes and six
 
 In this project, we define the direction to the right to be `(1,0)`, and the direction to the top right to be `(0,1)`. Thus, the direction to the top left is `(-1,1)`.
 
-The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`.
+The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`. They are imported from `game_logic.helpers`.
 
 | Function | Explanation |
 |----------|-------------|
