@@ -16,3 +16,11 @@ The following three functions from `game_logic.game` grab stuff that may be help
 When you return the coordinates, remember to run the coordinates through `subj_to_obj_coor()`, like in the example in `CustomBotTemplate.py`.
 
 ## Constants
+
+There are a few useful constants, or literals, from `game_logic.literals`.
+
+| Constant | Data Type | Explanation |
+|----------|-----------|-------------|
+|`START_COOR`|`dict(int:set(tuple(int,int)))`|The key is the `playerNum` of each player (1, 2, 3). The value is a `set` of coordinates of the starting squares.|
+|`END_COOR`|`dict(int:set(tuple(int,int)))`|Similar to `START_COOR`, but the value is a `set` of coordinates of the ending (destination) squares.|
+|`NEUTRAL_COOR`|`set(tuple(int,int))`|A `set` of coordinates of the neutral zone.|
