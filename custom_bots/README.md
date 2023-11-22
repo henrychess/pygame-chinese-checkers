@@ -1,3 +1,7 @@
-## Custom Bot Guide
+# Custom Bot Guide (under construction)
 
-*under construction*
+## Coordinate System
+
+## Functions
+
+## Constants
