@@ -3,6 +3,17 @@
 > This guide is under construction.
 ## Coordinate System
 
+The board of Chinese Checkers is a hexagonal board. There are three axes and six directions. However, like the Cartesian coordinate system, we only need two parameters to describe each unique square. The third direction can be calculated from the first two.
+
+In this project, we define the direction to the right to be
+
+The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`.
+
+| Function | Explanation |
+|----------|-------------|
+|`add(tuple, tuple)`|Add up the vectors. For example, `add((1,3),(5,7))` returns `(6,10)`.|
+|`mult(tuple, int)`|Multiply the vector by an integer. For example, `mult((1,2),4)` returns `(4,8)`.|
+
 ## Functions
 
 The following three functions from `game_logic.game` grab stuff that may be helpful for your bot to choose a move.
@@ -24,3 +35,5 @@ There are a few useful constants, or literals, from `game_logic.literals`.
 |`START_COOR`|`dict(int:set(tuple(int,int)))`|The key is the `playerNum` of each player (1, 2, 3). The value is a `set` of coordinates of the starting squares.|
 |`END_COOR`|`dict(int:set(tuple(int,int)))`|Similar to `START_COOR`, but the value is a `set` of coordinates of the ending (destination) squares.|
 |`NEUTRAL_COOR`|`set(tuple(int,int))`|A `set` of coordinates of the neutral zone.|
+|`ALL_COOR`|`set(tuple(int,int))`|A `set` of all coordinates on the board.|
+|`DIRECTIONS`|`set(tuple(int,int))`|A `set` of unit vectors of all six directions. Namely, `{(1,0),(0,1),(-1,1),(-1,0),(0,-1),(1,-1)}`.|
