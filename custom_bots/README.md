@@ -14,6 +14,13 @@ The coordinates and vectors are represented internally as `tuple(int, int)`. If 
 |`add(tuple, tuple)`|Add up the vectors. For example, `add((1,3),(5,7))` returns `(6,10)`.|
 |`mult(tuple, int)`|Multiply the vector by an integer. For example, `mult((1,2),4)` returns `(4,8)`.|
 
+The coordinates you play with inside `pickMove()` are all "subjective" coordinates, i.e. they look the same no matter which side you are actually on. The direction to the right is always `(1,0)` to your bot, even though it may actually be something like `(0,-1)` to the game board. To return the move your bot makes, do this:
+```py
+# start and end are the coordinates
+return [subj_to_obj_coor(start, self.playerNum),
+                subj_to_obj_coor(end, self.playerNum)]
+```
+
 ## Functions
 
 The following three functions from `game_logic.game` grab stuff that may be helpful for your bot to choose a move.
