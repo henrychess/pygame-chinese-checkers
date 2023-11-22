@@ -1,5 +1,6 @@
 from game_logic.player import Player
 from game_logic.game import *
+from game_logic.helpers import add, mult
 
 class CustomBotTemplate(Player):
     def __init__(self):
