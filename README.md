@@ -4,7 +4,7 @@
 > This is a hobby project by a beginner/amateur in programming. You may encounter bugs.
 
 ## Features
-- A game interface that supports 2 to 3 players, and 1 to 3 human players
+- A game interface that supports 2 to 3 players. Any of them can be a human player.
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
 - (Nov 19, 2023 update) You may create custom bots under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide (under construction)](https://github.com/henrychess/pygame-chinese-checkers/blob/main/custom_bots/README.md).
