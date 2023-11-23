@@ -1,7 +1,7 @@
 from game_logic.game import *
 from game_logic.helpers import *
 from game_logic.literals import *
-import pygame
+import pygame, sys
 
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.SCALED | pygame.RESIZABLE)
