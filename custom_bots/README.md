@@ -13,7 +13,7 @@ Here's a more concise cheat sheet for the six unit vectors:
 
 
 
-The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`. They are imported from `game_logic.helpers`.
+The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`. They are imported from `game_logic.helpers` (already done that in the template).
 
 | Function | Explanation |
 |----------|-------------|
