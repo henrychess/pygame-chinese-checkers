@@ -1,7 +1,7 @@
 # pygame-chinese-checkers
 
 > [!NOTE]
-> This is a hobby project by a beginner/amateur in programming. You may encounter bugs.
+> This is a hobby project by a beginner/amateur in programming. You may encounter bugs. If you do, please report them.
 
 ## Features
 - A game interface that supports 2 to 3 players. Any of them can be a human player.
