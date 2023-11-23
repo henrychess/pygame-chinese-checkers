@@ -10,8 +10,7 @@ g = Game(3)
 window.fill(WHITE)
 g.drawPolygons(window)
 g.drawLines(window)
-for obj_coor in g.board:
-    coor = obj_to_subj_coor(obj_coor, playerNum)
+for coor in g.board:
     c = add(g.centerCoor, mult(h2c(coor),g.unitLength)) #absolute coordinates on screen
     pygame.draw.circle(window, WHITE, c, g.circleRadius)
     pygame.draw.circle(window, BLACK, c, g.circleRadius, g.lineWidth)
