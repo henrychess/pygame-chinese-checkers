@@ -11,7 +11,7 @@ In this project, the direction to the right is defined as the x-axis, and the di
 
 Here's a more concise cheat sheet for the six unit vectors:
 
-<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor1.png" width=250>
+<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor1.png" width=300>
 
 
 
