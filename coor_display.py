@@ -14,8 +14,8 @@ for coor in g.board:
     c = add(g.centerCoor, mult(h2c(coor),g.unitLength)) #absolute coordinates on screen
     pygame.draw.circle(window, WHITE, c, g.circleRadius)
     pygame.draw.circle(window, BLACK, c, g.circleRadius, g.lineWidth)
-    if isinstance(g.board[obj_coor], Piece):
-        pygame.draw.circle(window, PLAYER_COLORS[g.board[obj_coor].getPlayerNum()-1], c, g.circleRadius-2)
+    if isinstance(g.board[coor], Piece):
+        pygame.draw.circle(window, PLAYER_COLORS[g.board[coor].getPlayerNum()-1], c, g.circleRadius-2)
     coor_str = str(coor)
     text = pygame.font.Font(size=14).render(coor_str, True, BLACK, None)
     textRect = text.get_rect()
