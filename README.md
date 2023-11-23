@@ -31,7 +31,7 @@ or whatever version your Python is.
 
 ### Installing Python within an Anaconda environment
 
-[Anaconda](https://www.anaconda.com/) is a great tool if you want to install many versions of Python in your computer. Anaconda environments do not interfere with each other. To install Anaconda, head to their official website and follow the instructions. After you have Anaconda installed, you may check your current environments in a terminal like so:
+[Anaconda](https://www.anaconda.com/) is a great tool if you want to install many versions of Python in your computer. Anaconda environments do not interfere with each other. To install Anaconda, head to their official website and follow the instructions. After you have Anaconda installed, you may check your current environments in a terminal like so: (`conda` commands are the same across Windows and UNIX-like OSes)
 ```
 conda env list
 ```
