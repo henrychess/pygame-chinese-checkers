@@ -3,6 +3,10 @@
 > [!NOTE]
 > This is a hobby project by a beginner/amateur in programming. You may encounter bugs. If you do, please report them.
 
+Chinese Checkers, or Sternhalma, is a turn-based board game of German origin. (No, it's not of Chinese origin. 😛) [Here](https://en.wikipedia.org/wiki/Chinese_checkers) is the Wikipedia page of the game.
+
+The rules of the game are simple: be the first to land all your pieces in the triangular area in the opposite side. Each turn, you move a piece in one of the following two ways: move it to an adjacent empty spot, or make it hop over one and only one piece of any color. If you make the piece hop, you may make it hop any number of times in the same turn. Be careful: you cannot end your turn with a piece in a spot that is neither in your territory nor in the neutral zone. You may pass enemy territories without having the piece end up staying there, though. (This can only happen when you're hopping.) In this game, turns alternate clockwise. (Geometrically, it doesn't matter if it's clockwise or counterclockwise. This is an arbitrary choice.)
+
 ## Features
 - A game interface that supports 2 to 3 players. Any of them can be a human player.
 - Export replay to file
