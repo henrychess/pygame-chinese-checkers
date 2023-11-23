@@ -5,7 +5,7 @@
 
 The board of Chinese Checkers is a hexagonal board. There are three axes and six directions. However, we can define it under a two-dimensional coordinate system similar to the Cartesian, using only two parameters to describe each unique square. The third axis can be calculated from the first two.
 
-In this project, we define the direction to the right as the x-axis, and the direction to the top right as the y-axis. Thus, the direction to the top left is the (-x+y) axis. The spot where the axes meet is defined as `(0, 0)`.
+In this project, the direction to the right is defined as the x-axis, and the direction to the top right as the y-axis. Thus, the direction to the top left is the (-x+y) axis. The spot where the axes meet is defined as `(0, 0)`.
 
 <img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor2.png" width=500>
 
