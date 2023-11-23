@@ -1,6 +1,9 @@
-# Custom Bot Guide (under construction)
-> [!NOTE]
-> This guide is under construction.
+# Custom Bot Guide
+
+Do you think the default bots are easy to beat? They probably are -- all of them are either based on a randomizer or some kind of [greedy algorithm](https://en.wikipedia.org/wiki/Greedy_algorithm). Instead of those easy bots, you may create your own bots, and let them fight against other bots or against yourself.
+
+To start, first make a copy of `CustomBotTemplate.py` and save it under the same folder (`custom_bots`). Rename the filename and class name as you wish, but it is a good practice to make the filename the same as the class name. Now that you have a template to start with, you may explore how to make a bot play the game with the information below.
+
 ## Coordinate System
 
 The board of Chinese Checkers is a hexagonal board. There are three axes and six directions. However, we can define it under a two-dimensional coordinate system similar to the Cartesian, using only two parameters to describe each unique square. The third axis can be calculated from the first two.
