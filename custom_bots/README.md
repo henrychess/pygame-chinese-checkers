@@ -7,9 +7,9 @@ The board of Chinese Checkers is a hexagonal board. There are three axes and six
 
 In this project, we define the direction to the right to be `(1,0)`, and the direction to the top right to be `(0,1)`. Thus, the direction to the top left is `(-1,1)`.
 
-![image](https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor1.png | width=250)
+<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor1.png" width=250>
 
-![image](https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor2.png | width=250)
+<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor2.png" width=250>
 
 The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`. They are imported from `game_logic.helpers`.
 
