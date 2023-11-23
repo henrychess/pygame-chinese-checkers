@@ -16,6 +16,8 @@
 - Python 3.9+
 - `pygame-ce` and `PySide6`
 
+### Installing Python (without Anaconda)
+
 To install Python itself, head to the [official website](https://www.python.org/) and follow their instructions.
 You may also check your Python version by pasting this in your terminal:
 ```
@@ -27,7 +29,24 @@ python3.10 [options]...
 ```
 or whatever version your Python is.
 
-To install `pygame-ce` and `PySide6`, paste this into your terminal (after you're sure you have Python 3.9+):
+### Installing Python within an Anaconda environment
+
+[Anaconda](https://www.anaconda.com/) is a great tool if you want to install many versions of Python in your computer. Anaconda environments do not interfere with each other. To install Anaconda, head to their official website and follow the instructions. After you have Anaconda installed, you may check your current environments in a terminal like so:
+```
+conda env list
+```
+To activate an environment, use:
+```
+conda activate [env_name]
+```
+To create a new environment, use the `conda create` command. The following example creates an environment with name `py3.12` and installs Python version 3.12 upon its creation:
+```
+conda create -n py3.12 python=3.12
+```
+
+### Installing the Python packages
+
+Once you have confirmed you have the right Python version, and optionally the right Conda environment, install `pygame-ce` and `PySide6`. To do this, paste this into your terminal:
 ```
 python -m pip install -U pygame-ce PySide6
 ```
