@@ -200,7 +200,7 @@ class HumanPlayer(Player):
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[0], g.unitLength), g.circleRadius, g.lineWidth+2)
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[1], g.unitLength), g.circleRadius, g.lineWidth+2)
 
-            backButton = TextButton('Back to Menu', width=150, height=50, font_size=32)
+            backButton = TextButton('Back to Menu', width=150, height=50, font_size=int(WIDTH*0.04))
             if backButton.isClicked(mouse_pos, clicking):
                 return (False, False)
             backButton.draw(window, mouse_pos)
@@ -238,7 +238,6 @@ class HumanPlayer(Player):
                     prev_selected_piece_coor = selected_piece_coor
                     #draw a semi-transparent gray circle outside the piece
                     pygame.draw.circle(window, (161,166,196,50), absCoor, g.circleRadius, g.lineWidth+1)
-                    #piece.selected = True
                     #draw semi-transparent circles around all coordinates in getValidMoves()
                     validmoves = g.getValidMoves(selected_piece_coor, self.playerNum)
                 for c in validmoves:
