@@ -85,7 +85,7 @@ def ints(s):
     if isinstance(s, set): return set(l)
 
 class Button:
-    def __init__(self, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=150, height:int=100, enabled:bool=True, button_color:tuple=ORANGE) -> None:
+    def __init__(self, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=200, height:int=100, enabled:bool=True, button_color:tuple=ORANGE) -> None:
         """ self.x=x; self.y=y; self.width = width; self.height = height """
         self.enabled=enabled; self.button_color=button_color
         if centerx and centery:
@@ -116,7 +116,7 @@ class Button:
         else: return False
 
 class TextButton(Button):
-    def __init__(self, text: str, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=150, height:int=100, enabled:bool=True, font=None, font_size=16, text_color:tuple=BLACK, button_color:tuple=ORANGE):
+    def __init__(self, text: str, x:int=0, y:int=0, centerx:int=0, centery:int=0, width:int=200, height:int=100, enabled:bool=True, font=None, font_size=16, text_color:tuple=BLACK, button_color:tuple=ORANGE):
         #super().__init__()
         self.enabled=enabled; self.button_color=button_color
         if centerx and centery:
