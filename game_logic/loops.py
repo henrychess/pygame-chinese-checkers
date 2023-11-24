@@ -98,7 +98,7 @@ class LoopController:
             if highlight:
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[0], g.unitLength), g.circleRadius, g.lineWidth+2)
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[1], g.unitLength), g.circleRadius, g.lineWidth+2)
-            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=32)
+            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=int(WIDTH*0.04))
             mouse_pos = pygame.mouse.get_pos()
             mouse_left_click = ev.type == MOUSEBUTTONDOWN
             if backButton.isClicked(mouse_pos, mouse_left_click):
@@ -179,14 +179,14 @@ class LoopController:
             if text: del text
             playerCount = self.replayRecord.pop(0)
             g = Game(playerCount)
-            prevButton = TextButton('<', centerx=WIDTH*0.125, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=32)
-            nextButton = TextButton('>', centerx=WIDTH*0.875, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=32)
-            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=32)
+            prevButton = TextButton('<', centerx=WIDTH*0.125, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=int(WIDTH*0.04))
+            nextButton = TextButton('>', centerx=WIDTH*0.875, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=int(WIDTH*0.04))
+            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=int(WIDTH*0.04))
             moveListIndex = -1
             left = False; right = False
             highlight = []
             window.fill(WHITE)
-            hintText = pygame.font.Font(size=30).render(
+            hintText = pygame.font.Font(size=int(HEIGHT*0.05)).render(
                 "Use the buttons or the left and right arrow keys to navigate through the game",
                 antialias=True, color=BLACK, wraplength=int(WIDTH*0.375))
             hintTextRect = hintText.get_rect()
@@ -252,7 +252,7 @@ class LoopController:
             winnerString = 'Player %d wins, then Player %d wins' % (winnerList[0], winnerList[1])
         else:
             winnerString = 'len(winnerList) is %d' % len(winnerList)
-        font = pygame.font.SysFont('Arial', 32)
+        font = pygame.font.SysFont('Arial', int(WIDTH*0.04))
         text = font.render(winnerString, True, BLACK, WHITE)
         textRect = text.get_rect()
         textRect.center = (400,100)
@@ -402,7 +402,7 @@ class LoopController:
 
     def mainMenuLoop(self, window:pygame.Surface):
         window.fill(WHITE)
-        titleText = pygame.font.Font(size=64).render(
+        titleText = pygame.font.Font(size=int(WIDTH*0.08)).render(
             "Chinese Checkers", True, BLACK)
         titleTextRect = titleText.get_rect()
         titleTextRect.center = (WIDTH*0.5, HEIGHT*0.25)
