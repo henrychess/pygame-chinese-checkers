@@ -98,7 +98,7 @@ class LoopController:
             if highlight:
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[0], g.unitLength), g.circleRadius, g.lineWidth+2)
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[1], g.unitLength), g.circleRadius, g.lineWidth+2)
-            backButton = TextButton('Back to Menu', width=150, height=50, font_size=32)
+            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=32)
             mouse_pos = pygame.mouse.get_pos()
             mouse_left_click = ev.type == MOUSEBUTTONDOWN
             if backButton.isClicked(mouse_pos, mouse_left_click):
@@ -179,9 +179,9 @@ class LoopController:
             if text: del text
             playerCount = self.replayRecord.pop(0)
             g = Game(playerCount)
-            prevButton = TextButton('<', centerx=WIDTH*0.125, centery=HEIGHT*0.5, width=100, height=100, font_size=32)
-            nextButton = TextButton('>', centerx=WIDTH*0.875, centery=HEIGHT*0.5, width=100, height=100, font_size=32)
-            backButton = TextButton('Back to Menu', width=150, height=50, font_size=32)
+            prevButton = TextButton('<', centerx=WIDTH*0.125, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=32)
+            nextButton = TextButton('>', centerx=WIDTH*0.875, centery=HEIGHT*0.5, width=int(WIDTH/8), height=int(HEIGHT/6), font_size=32)
+            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=32)
             moveListIndex = -1
             left = False; right = False
             highlight = []
@@ -258,8 +258,8 @@ class LoopController:
         textRect.center = (400,100)
         window.blit(text, textRect)
         #buttons
-        menuButton = TextButton("Back to menu", x=100, y=400)
-        exportReplayButton = TextButton("Export replay", x=500, y=400)
+        menuButton = TextButton("Back to menu", x=int(WIDTH/8), y=int(HEIGHT*2/3))
+        exportReplayButton = TextButton("Export replay", x=int(WIDTH*5/8), y=int(HEIGHT*2/3))
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
