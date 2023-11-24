@@ -258,8 +258,8 @@ class LoopController:
         textRect.center = (400,100)
         window.blit(text, textRect)
         #buttons
-        menuButton = TextButton("Back to menu", x=int(WIDTH/8), y=int(HEIGHT*2/3))
-        exportReplayButton = TextButton("Export replay", x=int(WIDTH*5/8), y=int(HEIGHT*2/3))
+        menuButton = TextButton("Back to menu", centerx=int(WIDTH*0.25), centery=int(HEIGHT*2/3))
+        exportReplayButton = TextButton("Export replay", centerx=int(WIDTH*0.75), centery=int(HEIGHT*2/3))
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -408,9 +408,9 @@ class LoopController:
         titleTextRect.center = (WIDTH*0.5, HEIGHT*0.25)
         window.blit(titleText, titleTextRect)
         playButton = TextButton(
-            "Play", x=WIDTH*0.375, y=HEIGHT*0.5, width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
+            "Play", centerx=int(WIDTH*0.5), centery=int(HEIGHT*0.375), width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
         loadReplayButton = TextButton(
-            "Load replay", x=WIDTH*0.375, y=HEIGHT*0.75, width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
+            "Load replay", centerx=int(WIDTH*0.5), y=int(HEIGHT*0.625), width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
         while True:
             ev = pygame.event.wait()
             if ev.type == QUIT:
