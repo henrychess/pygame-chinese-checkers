@@ -8,7 +8,7 @@ Chinese Checkers, or Sternhalma, is a turn-based board game of German origin. [H
 The rules of the game are simple: be the first to move all your pieces to the triangular area at the opposite side. Each turn, you move a piece in one of the following two ways: move it to an adjacent empty spot, or make it hop over one and only one piece of any color. If you make the piece hop, you may make it hop again any number of times in the same turn. Be careful: you cannot end your turn with a piece on a spot that is neither in your territory nor in the neutral zone. You may pass enemy territories without having the piece end up staying there, though. (This can only happen when you're hopping.) In this program, turns alternate clockwise. (Geometrically, it doesn't matter if it's clockwise or counterclockwise. This is an arbitrary choice.)
 
 The following image is an example of a hop. The highlighted green piece may hop as the arrows indicate, and may end in any of the spots except for the one marked with an X (as it's in the red player's territory).
-<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/hop-example.png" height=200>
+<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/hop-example.png" height=100>
 
 ## Features
 - A game interface that supports 2 to 3 players. Any of them can be a human player.
