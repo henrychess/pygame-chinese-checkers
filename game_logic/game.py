@@ -10,12 +10,10 @@ class Game:
         self.pieces: dict[int, set[Piece]] = {1:set(), 2:set(), 3:set()}
         self.board = self.createBoard(playerCount)
         #for drawing board
-        self.unitLength = 40 #unitLength length in pixels
-        self.lineWidth = 2 #line width
-        self.circleRadius = 15 #board square (circle) radius
+        self.unitLength = int(WIDTH * 0.05) #unitLength length in pixels
+        self.lineWidth = int(self.unitLength * 0.05) #line width
+        self.circleRadius = int(HEIGHT * 0.025) #board square (circle) radius
         self.centerCoor = (WIDTH/2, HEIGHT/2) #window size is 800*600
-        #
-        # self.screen_is_altered = False
 
     def createBoard(self, playerCount: int):
         Board = {}
