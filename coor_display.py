@@ -16,8 +16,8 @@ for coor in g.board:
     pygame.draw.circle(window, BLACK, c, g.circleRadius, g.lineWidth)
     if isinstance(g.board[coor], Piece):
         pygame.draw.circle(window, PLAYER_COLORS[g.board[coor].getPlayerNum()-1], c, g.circleRadius-2)
-    coor_str = str(coor)
-    text = pygame.font.Font(size=14).render(coor_str, True, BLACK, None)
+    coor_str = f"{coor[0]}, {coor[1]}"
+    text = pygame.font.Font(size=28).render(coor_str, True, BLACK, None)
     textRect = text.get_rect()
     textRect.center = c
     window.blit(text, textRect)
