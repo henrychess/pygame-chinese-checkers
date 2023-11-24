@@ -22,6 +22,7 @@ for coor in g.board:
     textRect.center = c
     window.blit(text, textRect)
 pygame.display.update()
+# pygame.image.save(window, "screenshot.png")
 
 while True:
     for event in pygame.event.get():
