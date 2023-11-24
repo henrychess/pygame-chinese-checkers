@@ -16,7 +16,9 @@ Here's a more concise cheat sheet for the six unit vectors:
 
 <img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/coor1.png" width=300>
 
+And here's an image containing all coordinates on the board:
 
+<img src="https://github.com/henrychess/pygame-chinese-checkers/blob/main/images/all_coors.jpg" width=800>
 
 The coordinates and vectors are represented internally as `tuple(int, int)`. If you want to do calculations to the coordinates, use the following functions. They all return a `tuple(int, int)`. They are imported from `game_logic.helpers` (already done that in the template).
 
