@@ -200,7 +200,7 @@ class HumanPlayer(Player):
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[0], g.unitLength), g.circleRadius, g.lineWidth+2)
                 pygame.draw.circle(window, (117,10,199), abs_coors(g.centerCoor, highlight[1], g.unitLength), g.circleRadius, g.lineWidth+2)
 
-            backButton = TextButton('Back to Menu', width=150, height=50, font_size=int(WIDTH*0.04))
+            backButton = TextButton('Back to Menu', width=int(HEIGHT*0.25), height=int(HEIGHT*0.0833), font_size=int(WIDTH*0.04))
             if backButton.isClicked(mouse_pos, clicking):
                 return (False, False)
             backButton.draw(window, mouse_pos)
