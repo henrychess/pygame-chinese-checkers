@@ -15,7 +15,7 @@ class LoopController:
         self.winnerList = list()
         self.replayRecord = list()
         self.playerTypes = {}
-        self.filePath = False
+        self.filePath = ''
         # key: class name strings
         # value: class without ()
         for i in PlayerMeta.playerTypes:
@@ -255,7 +255,7 @@ class LoopController:
         font = pygame.font.SysFont('Arial', int(WIDTH*0.04))
         text = font.render(winnerString, True, BLACK, WHITE)
         textRect = text.get_rect()
-        textRect.center = (400,100)
+        textRect.center = (int(WIDTH*0.5),int(HEIGHT/6))
         window.blit(text, textRect)
         #buttons
         menuButton = TextButton("Back to menu", centerx=int(WIDTH*0.25), centery=int(HEIGHT*2/3))
@@ -410,7 +410,7 @@ class LoopController:
         playButton = TextButton(
             "Play", centerx=int(WIDTH*0.5), centery=int(HEIGHT*0.375), width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
         loadReplayButton = TextButton(
-            "Load replay", centerx=int(WIDTH*0.5), y=int(HEIGHT*0.625), width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
+            "Load replay", centerx=int(WIDTH*0.5), centery=int(HEIGHT*0.625), width=WIDTH*0.25, height=HEIGHT*0.125, font_size=32)
         while True:
             ev = pygame.event.wait()
             if ev.type == QUIT:
