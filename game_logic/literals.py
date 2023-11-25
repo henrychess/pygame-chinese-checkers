@@ -1,5 +1,16 @@
-WIDTH = 1280
-HEIGHT = 960
+from tkinter import Tk
+
+root = Tk()
+screen_w = int(root.winfo_screenwidth() * 0.9)
+screen_h = int(root.winfo_screenheight() * 0.9)
+if int(screen_w * (3/4)) <= screen_h:
+    WIDTH = screen_w; HEIGHT = int(screen_w * (3/4))
+else:
+    HEIGHT = screen_h; WIDTH = int(screen_h * (4/3))
+del screen_w, screen_h
+root.destroy()
+del Tk
+
 END_COOR = {
     3: {(-4, -2), (-4, -1), (-3, -2), (-3, -1), (-2, -2), (-4, -3), (-3, -3), (-4, 0), (-2, -3), (-1, -3), (0, -4), (-1, -4), (-4, -4), (-3, -4), (-2, -4)},
     2: {(6, -4), (4, 0), (4, -3), (7, -3), (5, -2), (5, -1), (6, -2), (4, -4), (5, -3), (6, -3), (7, -4), (8, -4), (4, -1), (4, -2), (5, -4)},
