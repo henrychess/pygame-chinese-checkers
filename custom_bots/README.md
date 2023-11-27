@@ -8,7 +8,7 @@ To start, first make a copy of `CustomBotTemplate.py` and save it under the same
 
 Big thanks to [Red Blob Games](https://www.redblobgames.com/grids/hexagons/) for the hexagonal grid guide!
 
-The board of Chinese Checkers is a hexagonal board. There are three axes and six directions. However, we can define it under a two-dimensional coordinate system similar to the Cartesian, using only two parameters to describe each unique square. The third axis can be calculated from the first two.
+The board of Chinese Checkers is a hexagonal grid. There are three axes and six directions. However, we can define it under a two-dimensional coordinate system similar to the Cartesian, using only two parameters to describe each unique square. The third axis can be calculated from the first two.
 
 In this project, the direction to the right is defined as the x-axis, and the direction to the top right as the y-axis. Thus, the direction to the top left is the (-x+y) axis. The spot where the axes meet is defined as `(0, 0)`. The axes are drawn on the game board like so:
 
