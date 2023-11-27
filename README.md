@@ -3,6 +3,8 @@
 > [!NOTE]
 > This is a hobby project by a beginner/amateur in programming. You may encounter bugs. If you do, please report them.
 
+## Rules
+
 Chinese Checkers, or Sternhalma, is a turn-based board game of German origin. [Here](https://en.wikipedia.org/wiki/Chinese_checkers) is the Wikipedia page of the game. (No, really, it's not of Chinese origin. It was named that way to promote sales. 😛) The version used in this program supports 2 to 3 players, with each player using 15 pieces. In a 2-player game, the pieces do not start in the opposite sides.
 
 The rules of the game are simple: be the first to move all your pieces to the triangular area at the opposite side. Each turn, you move a piece in one of the following two ways: move it to an adjacent empty spot, or make it hop over one and only one piece of any color. If you make the piece hop, you may make it hop again any number of times in the same turn. Be careful: you cannot end your turn with a piece on a spot that is neither in your territory nor in the neutral zone. You may pass enemy territories without having the piece end up staying there, though. (This can only happen when you're hopping.) In this program, turns alternate clockwise. (Geometrically, it doesn't matter if it's clockwise or counterclockwise. This is an arbitrary choice.)
@@ -15,7 +17,7 @@ The following image is an example of a hop. The highlighted green piece may hop 
 - A game interface that supports 2 to 3 players. Any of them can be a human player.
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
-- (Nov 19, 2023 update) You may create custom bots under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide](https://github.com/henrychess/pygame-chinese-checkers/blob/main/custom_bots/README.md).
+- You may create **custom bots** under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide](https://github.com/henrychess/pygame-chinese-checkers/blob/main/custom_bots/README.md).
 
 ## Showcase video
 [Here is a showcase of the program running on Mac OS (Nov 6 build)](https://youtu.be/zsmd8o0BoDw)
