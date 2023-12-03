@@ -20,7 +20,13 @@ The following image is an example of a hop. The highlighted green piece may hop 
 - You may create **custom bots** under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide](https://github.com/henrychess/pygame-chinese-checkers/blob/main/custom_bots/README.md).
 
 ## Showcase video
-[Here is a showcase of the program running on Mac OS (Nov 6 build)](https://youtu.be/zsmd8o0BoDw)
+
+### Most Recent Showcase:
+
+[Nov 25, 2023 build](https://youtu.be/r3i92YeDN2w)
+
+### Older Showcase Vids
+[Nov 6, 2023 build](https://youtu.be/zsmd8o0BoDw)
 
 ## Requirements
 - Python 3.9+
