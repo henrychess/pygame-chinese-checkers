@@ -3,7 +3,8 @@
 > [!NOTE]
 > This is a hobby project by a beginner/amateur in programming. You may encounter bugs. If you do, please report them.
 
-> [!WARNING]
+
+> [!CAUTION]
 > This game is not tested in Linux environments. Theoretically it should run, but users have reported otherwise.
 
 ## Rules
