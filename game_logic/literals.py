@@ -5,8 +5,6 @@
 # root.destroy()
 # del Tk
 from PySide6 import QtWidgets
-from PySide6.QtWidgets import *
-from PySide6.QtCore import *
 import sys
 app = QtWidgets.QApplication(sys.argv)
 screen = app.primaryScreen()
