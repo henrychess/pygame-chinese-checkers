@@ -21,7 +21,7 @@ The following image is an example of a hop. The highlighted green piece may hop 
 - A game interface that supports 2 to 3 players. Any of them can be a human player.
 - Export replay to file
 - Load an existing replay file to watch the game (you may click the buttons or press the left and right arrow keys to navigate through the game)
-- You may create **custom bots** under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide](https://github.com/henrychess/pygame-chinese-checkers/blob/main/custom_bots/README.md).
+- You may create **custom bots** under the `custom_bots` folder! It'll automatically be added into the game. For more information, check out the [custom bot guide](bots/README.md).
 
 ## Showcase video
 
