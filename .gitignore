@@ -1,0 +1,11 @@
+# Python
+.ipynb_checkpoints
+*_cache
+__pycache__
+.venv/
+
+# Hydra
+outputs/
+
+# Workspace
+.vscode
