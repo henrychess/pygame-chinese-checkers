@@ -441,6 +441,8 @@ def exactly_one_is_human(players: list[Player]):
     return b
 
 def trainingLoop(g: Game, players: list[Player], recordReplay: bool=False):
+    # use this if you want to train a neural network
+    # this runs a match where every player is a bot, without any graphics
     playingPlayerIndex = 0
     replayRecord = []
     if recordReplay:
